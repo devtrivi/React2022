@@ -1,8 +1,11 @@
 import React from "react";
-
-const MenuItem = ({ title, id, imageUrl }) => {
+import { useNavigate } from 'react-router-dom'
+const MenuItem = ({ title, id, imageUrl, linkUrl}) => {
+  const navigate = useNavigate();
+/* ztm used history.push(`${match.url}${linkUrl}`) */
   return (
-    <div className={`menu-item`} style={{
+    <div className={`menu-item`} onClick={()=> 
+      navigate(`/${linkUrl}`)} style={{
       minWidth: "30%", height: "240px",
       flex: "1 1 auto",
       display: "flex",
