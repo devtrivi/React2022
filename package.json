@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "firebase": "^9.6.6",
     "react": "^17.0.1",
     "react-dom": "^16.8.6",
     "react-router-dom": "^6.2.1",

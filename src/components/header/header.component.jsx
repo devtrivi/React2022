@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { ReactComponent as Logo } from '../../assets/084crown.svg'
+import { ReactComponent as Logo } from '../../assets/supreme-archer.svg'
 import styled from 'styled-components';
-
+import { auth } from '../../firebase/firebase.utils'
 const Wrapper = styled.div`
     .header {
   height: 70px;
@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   }
 }
 `
-function Header() {
+function Header({currentUser}) {
     return <div className="header" style={{
         height: '70px',
         width: '100%',
@@ -53,7 +53,13 @@ function Header() {
             justifyContent: 'flex-end'
         }}>
             <Link className="option" style={{ padding: '10px 15px' }} to='/shop'>SHOP</Link>
-            <Link className="option" to='/shop'>CONTACT</Link>
+            <Link className="option" style={{ padding: '10px 15px' }} to='/shop'>CONTACT</Link><Link className="option" style={{ padding: '10px 15px' }} to='/signin'>INGRESAR</Link>
+            {
+                currentUser ?
+                <div className='option' style={{ padding: '10px 15px' }} onClick={()=>auth.signOut()}>SIGN OUT</div>
+                :
+                <Link className='option' style={{ padding: '10px 15px' }} to='/signin'>SIGN IN</Link>
+            }
         </div>
     </div>
 }
