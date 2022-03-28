@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 import { ReactComponent as Logo } from '../../assets/supreme-archer.svg'
 import styled from 'styled-components'
 import { auth } from '../../firebase/firebase.utils'
+import CartIcon from '../cart-icon/cart-icon.component'
+import CartDropdown from '../cart-dropdown/cart-dropdown.component'
+
 const Wrapper = styled.div`
   .header {
     height: 70px;
@@ -31,7 +34,7 @@ const Wrapper = styled.div`
     }
   }
 `
-function Header({ currentUser }) {
+function Header({ currentUser, hidden }) {
   return (
     <div
       className='header'
@@ -89,13 +92,16 @@ function Header({ currentUser }) {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
+      {hidden ? null : <CartDropdown />}
     </div>
   )
 }
 
-const mapStateToProps = state => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
 })
 
 export default connect(mapStateToProps)(Header)
