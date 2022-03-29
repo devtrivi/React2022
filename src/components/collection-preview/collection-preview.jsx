@@ -4,36 +4,46 @@ import styled from 'styled-components'
 import CollectionItem from '../collection-item/collection-item.component'
 
 const Wrapper = styled.div`
-.collection-preview {
- 
+  .collection-preview {
+    .title {
+    }
 
-  .title {
-    
+    .preview {
+    }
   }
-
-  .preview {
-    
-  }
-}
 `
 
-const CollectionPreview = ({ title, items }) => (<Wrapper className="collection-preview" style={{
-  display: 'flex',
-  flexDirection: 'column',
-  marginBottom: '30px'
-}}>
-
-  <h1 className="title" style={{
-    fontSize: '28px',
-    marginBottom: '25px'
-  }}>{title.toUpperCase()}</h1>
-  <div className="preview" style={{
-    display: 'flex',
-    justifyContent: 'space-between'
-  }}>
-    {items.filter((item, idx) => idx < 4).map(({ id, ...otherItemProps }) => (
-      <CollectionItem key={id} {...otherItemProps} />
-    ))}
-  </div>
-</Wrapper>)
+const CollectionPreview = ({ title, items }) => (
+  <Wrapper
+    className='collection-preview'
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      marginBottom: '30px',
+    }}
+  >
+    <h1
+      className='title'
+      style={{
+        fontSize: '28px',
+        marginBottom: '25px',
+      }}
+    >
+      {title.toUpperCase()}
+    </h1>
+    <div
+      className='preview'
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+      }}
+    >
+      {items
+        .filter((item, idx) => idx < 4)
+        .map(item => (
+          <CollectionItem key={item.id} item={item} />
+        ))}
+    </div>
+  </Wrapper>
+)
 export default CollectionPreview
