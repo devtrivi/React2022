@@ -1,7 +1,7 @@
 import React from 'react'
-const CartItem = ({ item: { imageurl, price, name, quantity } }) => (
+const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
   <div className='cart-item'>
-    <img src={imageurl} alt={name} set='' />
+    <img src={imageUrl} alt={name} set='' />
     <div className='item-details'>
       <span className='name'>{name}</span>
       <span className='price'>
