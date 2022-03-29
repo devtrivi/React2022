@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { auth } from '../../firebase/firebase.utils'
 import CartIcon from '../cart-icon/cart-icon.component'
 import CartDropdown from '../cart-dropdown/cart-dropdown.component'
-
+import { toggleCartHidden } from '../../redux/cart/cart.actions'
 const Wrapper = styled.div`
   .header {
     height: 70px;
@@ -92,7 +92,7 @@ function Header({ currentUser, hidden }) {
             SIGN IN
           </Link>
         )}
-        <CartIcon />
+        <CartIcon onClick={() => toggleCartHidden()} />
       </div>
       {hidden ? null : <CartDropdown />}
     </div>
@@ -104,4 +104,7 @@ const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
   hidden,
 })
 
+const mapDispatchToProps = dispatch => ({
+  toggleCartHidden: () => dispatch(toggleCartHidden()),
+})
 export default connect(mapStateToProps)(Header)
