@@ -8,6 +8,9 @@ import ShopPage from './pages/shop/shop.component'
 import Header from './components/header/header.component'
 import SignInAndSignUpPage from './components/sign-in-and-sign-up/sign-in-and-sign-up.component'
 import { auth, createUserProfileDocument } from './firebase/firebase.utils'
+import { selectCurrentUser } from './redux/user/user.selectors'
+import { createStructuredSelector } from 'reselect'
+import CheckoutPage from './pages/checkout/checkout.component'
 /* a problem with props (and react) is well illustrated by the history prop. if i want to change it in my menu comp, i will have to make a prop chain from here till there. this is called prop tunneling and as you imagine it does not scale well. */
 
 class App extends React.Component {
@@ -43,6 +46,7 @@ class App extends React.Component {
           {' '}
           <Route path='/' element={<HomePage />} />
           <Route path='/shop' element={<ShopPage />} />
+          <Route exact path='/checkout' element={<CheckoutPage />} />
           <Route
             exact
             path='/signin'
@@ -59,8 +63,8 @@ class App extends React.Component {
     )
   }
 }
-const mapStateToProps = ({ user }) => ({
-  setCurrentUser: user.currentUser,
+const mapStateToProps = createStructuredSelector({
+  setCurrentUser: selectCurrentUser,
 })
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
