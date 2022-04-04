@@ -39,15 +39,14 @@ class App extends React.Component {
     this.unsubscribeFromAuth()
   }
   render() {
-    console.log('what are props  >>> ', this.props)
     return (
       <div>
         <Header />
         <Routes>
           {' '}
           <Route path='/' element={<HomePage />} />
-          <Route path='/shop' element={<ShopPage />} />
-          <Route exact path='/checkout' element={<CheckoutPage />} />
+          <Route path='shop/*' element={<ShopPage />} />
+          <Route path='/checkout' element={<CheckoutPage />} />
           <Route
             exact
             path='/signin'

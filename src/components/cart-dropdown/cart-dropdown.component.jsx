@@ -9,6 +9,7 @@ import { toggleCartHidden } from '../../redux/cart/cart.actions'
 
 import { connect } from 'react-redux'
 function CartDropdown({ cartItems, dispatch }) {
+console.log('cartitems in dropdown, ',cartItems)
   return (
     <div
       className='cart-dropdown'

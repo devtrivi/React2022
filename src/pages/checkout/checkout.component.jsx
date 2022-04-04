@@ -2,12 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import CheckoutItem from '../../components/checkout-item/checkout-item.component'
+import StripeCheckoutButton from '../../components/stripe-button/stripe-button.component'
 import Z from '../../components/z/z.component'
 import {
   selectCartItems,
   selectCartTotal,
 } from '../../redux/cart/cart.selectors'
+
 function CheckoutPage({ cartItems, total }) {
+  console.log('cartitems in checkout ',cartItems)
   return (
     <div
       className='checkout-page'
@@ -19,7 +22,7 @@ function CheckoutPage({ cartItems, total }) {
         alignItems: 'center',
         margin: '50px auto 0',
       }}
-    >
+    >checkout
       <div
         className='checkout-header'
         style={{
@@ -30,36 +33,36 @@ function CheckoutPage({ cartItems, total }) {
           borderBottom: '1px solid darkgrey',
         }}
       >
-        <Z
+        <div
           className='header-blocks'
           style={{ textTransform: 'capitalize', width: '23%' }}
         >
           <span>Product</span>
-        </Z>{' '}
-        <Z
+        </div>{' '}
+        <div
           className='header-blocks'
           style={{ textTransform: 'capitalize', width: '23%' }}
         >
           <span>Description</span>
-        </Z>{' '}
-        <Z
+        </div>{' '}
+        <div
           className='header-blocks'
           style={{ textTransform: 'capitalize', width: '23%' }}
         >
           <span>Quantity</span>
-        </Z>{' '}
-        <Z
+        </div>{' '}
+        <div
           className='header-blocks'
           style={{ textTransform: 'capitalize', width: '23%' }}
         >
           <span>Price</span>
-        </Z>{' '}
-        <Z
+        </div>{' '}
+        <div
           className='header-blocks'
           style={{ textTransform: 'capitalize', width: '23%' }}
         >
           <span>Remove</span>
-        </Z>
+        </div>
       </div>
       {cartItems.map(cartItem => (
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
@@ -69,6 +72,7 @@ function CheckoutPage({ cartItems, total }) {
         style={{ marginTop: '30px', marginLeft: 'auto', fontSize: '36px' }}
       >
         <span>TOTAL: {total}</span>
+        <StripeCheckoutButton price={total} />
       </div>
     </div>
   )

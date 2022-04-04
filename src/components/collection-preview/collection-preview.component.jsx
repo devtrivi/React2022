@@ -21,7 +21,7 @@ const CollectionPreview = ({ title, items }) => (
       flexDirection: 'column',
       marginBottom: '30px',
     }}
-  >
+  >- Collection preview
     <h1
       className='title'
       style={{
